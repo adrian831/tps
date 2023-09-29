@@ -1,22 +1,26 @@
+<!DOCTYPE html>
 <html>
-<head>
+<body>
+
+<h2>Using the XMLHttpRequest Object</h2>
+
+<div id="demo">
+<button type="button" onclick="loadXMLDoc()">Change Content</button>
+</div>
 
 <script>
-	function sommadif() {
-
-	var num1 = parseInt(document.getElementById("num1").value);
-	var num2 = parseInt(document.getElementById("num2").value);
-	for (let i = nums1; i < nums2.length + 1; i++) {
-    
-    
-		
-
+function loadXMLDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "ana, true);
+  xhttp.send();
+}
 </script>
 
-
-
-<input type="number" id="num1">
-<input type="number" id="num2">
-</head>
+</body>
 </html>
-
