@@ -53,7 +53,9 @@
         var nameElement = nameElements[j];
         var row = table.insertRow(-1);
 
-        if (j === 0) {
+        var x=0;
+
+     
 
           var nameCell = row.insertCell(0);
           var ageCell = row.insertCell(1);
@@ -64,11 +66,7 @@
           ageCell.innerHTML = age;
           descriptionCell.innerHTML = description;
           classCell.innerHTML = sezione;
-        } else {
-          // Per le righe successive, inserisci solo il nome
-          var nameCell = row.insertCell(0);
-          nameCell.innerHTML = nameElement.childNodes[0].nodeValue;
-        }
+       
       }
     }
   }
