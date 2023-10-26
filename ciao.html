@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lettura XML e Creazione Tabella</title>
+</head>
+<body>
+
+<h1>Elenco Studenti</h1>
+
+<table id="data-table" border="1">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Età</th>
+      <th>Descrizione</th>
+      <th>Classe</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+
+  function loadXMLDoc(filename) {
+    var xhttp;
+    if (window.XMLHttpRequest) {
+      xhttp = new XMLHttpRequest();
+    } else {
+      xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET", filename, false);
+    xhttp.send();
+    return xhttp.responseXML;
+  }
+
+  // Funzione per leggere il file XML e creare la tabella
+  function readXML() {
+    var xmlDoc = loadXMLDoc("adrian.xml");
+    var table = document.getElementById("data-table");
+    var classes = xmlDoc.getElementsByTagName("classe");
+
+    for (var i = 0; i < classes.length; i++) {
+      var classe = classes[i];
+      var nameElements = classe.getElementsByTagName("name");
+
+
+      var age = classe.getElementsByTagName("age")[0].childNodes[0].nodeValue;
+      var description = classe.getElementsByTagName("description")[0].childNodes[0].nodeValue;
+      var sezione = classe.getAttribute("sezione");
+
+      for (var j = 0; j < nameElements.length; j++) {
+        var nameElement = nameElements[j];
+        var row = table.insertRow(-1);
+
+        if (j === 0) {
+
+          var nameCell = row.insertCell(0);
+          var ageCell = row.insertCell(1);
+          var descriptionCell = row.insertCell(2);
+          var classCell = row.insertCell(3);
+
+          nameCell.innerHTML = nameElement.childNodes[0].nodeValue;
+          ageCell.innerHTML = age;
+          descriptionCell.innerHTML = description;
+          classCell.innerHTML = sezione;
+        } else {
+          // Per le righe successive, inserisci solo il nome
+          var nameCell = row.insertCell(0);
+          nameCell.innerHTML = nameElement.childNodes[0].nodeValue;
+        }
+      }
+    }
+  }
+
+
+  readXML();
+</script>
+
+</body>
+</html>
