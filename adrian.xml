@@ -17,4 +17,21 @@
            Informatic Student
       </description>
    </classe>
+	<classe sezione="5C">
+		<name>Blu</name>
+	<age>18</age>
+	<description>
+   		Informatic Student
+   	</description>
+	<name>Rosso</name>
+       <age>18</age>
+      <description>
+           Informatic Student
+      </description>
+      <name>Messi</name>
+       <age>18</age>
+      <description>
+           Informatic Student
+      </description>
+   </classe>
 </scuola>
