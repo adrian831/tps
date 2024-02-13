@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+</head>
+<body>
+
+    <!-- Titolo della pagina -->
+    <h1>Main Page</h1>
+
+    <!-- Form per inserire il JSON e pulsante per inviarlo -->
+    <form id="jsonForm">
+        <label for="jsonInput">Inserisci JSON:</label>
+        <textarea id="jsonInput" rows="4" cols="50"></textarea>
+        <br>
+        <button type="button" onclick="sendJSON()">Invia JSON</button>
+    </form>
+
+    <!-- Script JavaScript per gestire l'invio del JSON -->
+    <script>
+        function sendJSON() {
+            // Recupera la stringa JSON dall'input
+            const jsonString = document.getElementById('jsonInput').value;
+            // Parsa la stringa JSON in un oggetto JavaScript
+            const jsonObject = JSON.parse(jsonString);
+            // Salva l'oggetto JSON nel localStorage
+            localStorage.setItem('jsonData', JSON.stringify(jsonObject));
+            // Reindirizza verso la pagina "receiver.html"
+            window.location.href = 'receiver.html';
+        }
+    </script>
+
+</body>
+</html>

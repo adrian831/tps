@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receiver Page</title>
+</head>
+<body>
+
+    <!-- Titolo della pagina -->
+    <h1>Receiver Page</h1>
+
+    <!-- Div per visualizzare l'output del JSON -->
+    <div id="jsonOutput"></div>
+
+    <!-- Script JavaScript per gestire la visualizzazione del JSON ricevuto -->
+    <script>
+        // Funzione eseguita quando la pagina è completamente caricata
+        window.onload = function () {
+            // Recupera la stringa JSON dal localStorage
+            const jsonString = localStorage.getItem('jsonData');
+            // Verifica se c'è un JSON salvato
+            if (jsonString) {
+                // Parsa la stringa JSON in un oggetto JavaScript
+                const jsonObject = JSON.parse(jsonString);
+                // Chiama la funzione per visualizzare il JSON
+                displayJSON(jsonObject);
+            } else {
+                // Se non c'è JSON, mostra un messaggio di avviso
+                document.getElementById('jsonOutput').innerText = 'Nessun dato JSON ricevuto.';
+            }
+        };
+
+        // Funzione per visualizzare il JSON nel div
+        function displayJSON(jsonObject) {
+            const jsonOutputDiv = document.getElementById('jsonOutput');
+            // Converte l'oggetto JavaScript in una stringa formattata e la mostra nel div
+            jsonOutputDiv.innerText = JSON.stringify(jsonObject, null, 2);
+        }
+    </script>
+
+</body>
+</html>
