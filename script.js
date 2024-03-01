@@ -1,4 +1,7 @@
-// Funzione per leggere e visualizzare il JSON
+window.onload = function() {
+  visualizzaJSON();
+};
+
 function visualizzaJSON() {
   fetch('data.json')
     .then(response => response.json())
@@ -8,5 +11,3 @@ function visualizzaJSON() {
     })
     .catch(error => console.error('Si è verificato un errore durante il recupero dei dati JSON:', error));
 }
-
-document.getElementById('viewButton').addEventListener('click', visualizzaJSON);
