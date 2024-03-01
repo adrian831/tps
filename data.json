@@ -1,10 +1,32 @@
-{
-  "nome": "Mario",
-  "cognome": "Rossi",
-  "età": 30,
-  "indirizzo": {
-    "via": "Via Roma",
-    "città": "Milano",
-    "cap": "20100"
+[
+  {
+    "marca": "Wilson",
+    "modello": "Pro Staff RF97 Autograph",
+    "peso": "340 g",
+    "lunghezza": "27 pollici",
+    "area_testa": "97 pollici quadrati",
+    "schema_corde": "16x19",
+    "prezzo": "$229.00",
+    "disponibilità_colori": ["nero", "rosso"]
+  },
+  {
+    "marca": "Babolat",
+    "modello": "Pure Drive",
+    "peso": "300 g",
+    "lunghezza": "27.5 pollici",
+    "area_testa": "100 pollici quadrati",
+    "schema_corde": "16x19",
+    "prezzo": "$199.00",
+    "disponibilità_colori": ["blu", "bianco"]
+  },
+  {
+    "marca": "Head",
+    "modello": "Graphene 360+ Speed Pro",
+    "peso": "310 g",
+    "lunghezza": "27 pollici",
+    "area_testa": "100 pollici quadrati",
+    "schema_corde": "18x20",
+    "prezzo": "$249.95",
+    "disponibilità_colori": ["grigio", "nero", "giallo"]
   }
-}
+]
