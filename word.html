@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>AngularJS JSON GET Request</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="myController">
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myController', function ($scope, $http) {
+            $scope.myString = "Hello, World!"; // La tua stringa da trasformare in JSON
+
+            // Funzione per convertire la stringa in JSON e inviare la richiesta GET
+            $scope.sendRequest = function () {
+                var jsonData = JSON.stringify({ data: $scope.myString });
+
+                // Utilizza $http per inviare una richiesta GET con la stringa JSON nell'URL
+                $http.get('http://example.com/api?json=' + encodeURIComponent(jsonData))
+                    .then(function (response) {
+                        // Gestisci la risposta qui
+                        console.log(response.data);
+                    }, function (error) {
+                        // Gestisci gli errori qui
+                        console.error(error);
+                    });
+            };
+        });
+    </script>
+
+    <div>
+        <input type="text" ng-model="myString" placeholder="Inserisci la tua stringa">
+        <button ng-click="sendRequest()">Invia richiesta</button>
+    </div>
+
+</body>
+
+</html>
