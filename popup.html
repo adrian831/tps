@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>WordPress Article Search</title>
-  <script src="popup.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search WordPress Articles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        #results-container {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Ricerca articoli WordPress</h1>
-  <input type="text" id="keyword" placeholder="Inserisci la parola chiave">
-  <button id="searchButton">Cerca</button>
-  <div id="results"></div>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Inserisci la parola chiave">
+        <button id="search-button">Cerca</button>
+    </div>
+    <div id="results-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>
