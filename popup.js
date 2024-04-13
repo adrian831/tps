@@ -18,7 +18,7 @@ function requestPermissions() {
 function searchWordPress() {
   var keyword = document.getElementById('keyword').value;
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    if (tabs.length > 0) {
+    if (tabs && tabs.length > 0) {
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         function: searchInPage,
@@ -42,7 +42,7 @@ function searchInPage(keyword) {
       let resultsHtml = '';
       titles.forEach(title => {
         const link = title.parentElement.href;
-        if (link.includes('wordpress.com')) {
+        if (link && link.includes('wordpress.com')) {
           resultsHtml += `<p><a href="${link}" target="_blank">${title.textContent}</a></p>`;
         }
       });
