@@ -1,6 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('searchButton').addEventListener('click', searchWordPress);
+  document.getElementById('searchButton').addEventListener('click', requestPermissions);
 });
+
+function requestPermissions() {
+  chrome.permissions.request({
+    permissions: ['activeTab'],
+    origins: ['<all_urls>']
+  }, function(granted) {
+    if (granted) {
+      searchWordPress();
+    } else {
+      console.error('Permesso negato.');
+    }
+  });
+}
 
 function searchWordPress() {
   var keyword = document.getElementById('keyword').value;
@@ -28,7 +41,10 @@ function searchInPage(keyword) {
 
       let resultsHtml = '';
       titles.forEach(title => {
-        resultsHtml += `<p>${title.textContent}</p>`;
+        const link = title.parentElement.href;
+        if (link.includes('wordpress.com')) {
+          resultsHtml += `<p><a href="${link}" target="_blank">${title.textContent}</a></p>`;
+        }
       });
 
       const resultsDiv = document.createElement('div');
