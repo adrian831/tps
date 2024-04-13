@@ -5,11 +5,15 @@ document.addEventListener('DOMContentLoaded', function() {
 function searchWordPress() {
   var keyword = document.getElementById('keyword').value;
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    chrome.scripting.executeScript({
-      target: { tabId: tabs[0].id },
-      function: searchInPage,
-      args: [keyword]
-    });
+    if (tabs.length > 0) {
+      chrome.scripting.executeScript({
+        target: { tabId: tabs[0].id },
+        function: searchInPage,
+        args: [keyword]
+      });
+    } else {
+      console.error('Nessuna scheda attiva trovata.');
+    }
   });
 }
 
