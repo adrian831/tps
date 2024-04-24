@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Articles from TechCrunch</title>
+    <!-- CSS per la stilizzazione della lista degli articoli e della barra di ricerca -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh; /* Altezza minima per riempire lo schermo */
+            background-color: #f9f9f9;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        #search-container {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        #search {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            width: 300px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            outline: none;
+        }
+        #search-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #search-button:hover {
+            background-color: #0056b3;
+        }
+        #articles-list {
+            list-style: none; /* Rimuove i punti elenco */
+            padding: 0; /* Rimuove il padding predefinito */
+            width: 100%;
+        }
+        #articles-list li {
+            margin-bottom: 10px; /* Spazio inferiore tra gli elementi della lista */
+            padding: 15px; /* Padding intorno agli elementi della lista */
+            background-color: #fff; /* Colore di sfondo */
+            border-radius: 5px; /* Bordo arrotondato */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Ombra */
+        }
+    </style>
+</head>
+<body>
+    <h1>Latest Articles from TechCrunch</h1>
+    <div id="search-container">
+        <input type="text" id="search" name="search" placeholder="Search articles...">
+        <button id="search-button" onclick="showArticles()">Search</button>
+    </div>
+    <ul id="articles-list"></ul>
+
+    <script>
+        function showArticles() {
+            var searchTerm = document.getElementById('search').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://techcrunch.com/wp-json/wp/v2/posts", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var posts = JSON.parse(xhr.responseText);
+                    var articlesList = document.getElementById('articles-list');
+                    articlesList.innerHTML = ''; // Cancella la lista prima di aggiungere nuovi elementi
+                    articlesList.style.display = 'block'; // Mostra la lista quando i dati sono pronti
+                    posts.forEach(function(post) {
+                        // Controlla se il titolo dell'articolo contiene il termine di ricerca
+                        if(post.title.rendered.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            var li = document.createElement('li');
+                            li.textContent = post.title.rendered;
+                            articlesList.appendChild(li);
+                        }
+                    });
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
